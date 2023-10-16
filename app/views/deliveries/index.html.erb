@@ -1,0 +1,90 @@
+<div>
+  <div>
+    <h1>
+      Delivery Tracker
+    </h1>
+    <p> Know if something gets lost in the mail.</p>
+  </div>
+
+  <hr>
+
+  <div>
+    <div>
+      <h2>
+        Expecting a package?
+      </h2>
+
+      <form action="/insert_delivery" method="post">
+        <div>
+          <label for="description_box">
+            Description
+          </label>
+
+          <input type="text" id="description_box" name="query_description">
+        </div>
+
+        <div>
+          <label for="supposed_to_arrive_on_box">
+            Supposed to arrive on
+          </label>
+
+          <input type="date" id="supposed_to_arrive_on_box" name="query_supposed_to_arrive_on">
+        </div>
+
+        <div>
+          <label for="details_box">
+            Details
+          </label>
+
+          <textarea id="details_box" name="query_details" rows="3"></textarea>
+        </div>
+        <button>Log delivery</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="waiting_on">
+  <h2> Waiting on </h2>
+  <ul>
+    <% @waiting_on_deliveries.each do |a_delivery|%>
+
+      <li>
+        <div><%= a_delivery.description %></div>
+        <div>Supposed to arrive on <%= a_delivery.supposed_to_arrive_on %></div>
+        <div><%= a_delivery.details %></div>
+        <div>
+          <form action="/modify_delivery/<%= a_delivery.id %>" method="post">
+            <input type="hidden" name="arrived" value="true">
+            <button>Mark as received</button>
+          </form>
+        </div>
+      </li>
+
+    <% end %>
+  </ul>
+</div>
+
+<hr>
+
+<div class="received">
+  <h2> Received </h2>
+
+  <ul>
+    <% @list_of_deliveries.each do |a_delivery|%>
+      <% if a_delivery.arrived == true%>
+        <li>
+          <div>
+            <%= a_delivery.description%>
+          </div>
+          <small> Updated [do some time wizardry here]
+          <a href="/delete_delivery/<%=a_delivery.id%>"> Delete </a>
+          </small>
+        </li>
+
+      <% end %>
+    <% end %>
+  </ul>
+</div>
