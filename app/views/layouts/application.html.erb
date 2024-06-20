@@ -11,6 +11,22 @@
   </head>
 
   <body>
+    <nav>
+
+      <% if current_user == nil %>
+        <a href="users/sign_up">Sign up</a> |
+        <a href="/users/sign_in">Sign in</a>
+        <hr>
+        <p>You need to sign in or sign up before continuing.</p>
+      <% else %>
+        <a href="/">Delivery Tracker</a> |
+        <a href="/users/edit">Edit profile</a> |
+        <a href="/users/sign_out">Sign out</a>
+        <hr>
+      <% end %>
+
+    </nav>
+
     <%= yield %>
   </body>
 </html>
