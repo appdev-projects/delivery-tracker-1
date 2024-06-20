@@ -16,7 +16,7 @@ class DeliveriesController < ApplicationController
 
     if @delivery.valid?
       @delivery.save
-      redirect_to("/deliveries", notice:"Delivery created successfully")
+      redirect_to("/deliveries", notice:"Added to log")
     else
       redirect_to("/deliveries", alert: "Delivery failed to create successfully")
     end
