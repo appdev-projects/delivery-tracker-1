@@ -22,3 +22,46 @@
 
 </form>
 <hr>
+<div style="background-color:lightgoldenrodyellow">
+  <h2>Waiting on</h2>
+  <ul>
+    <%@waiting_on_deliveries.each do |delivery|%>
+    <li>
+      <div><%=delivery.description%></div>
+      <%if delivery.supposed_to_arrive_on < Date.current%>
+      <div style="color:red">Supposed to arrive on <%=delivery.supposed_to_arrive_on.strftime("%m-%d-%Y")%></div>
+      <%else%>
+      <div>Supposed to arrive on <%=delivery.supposed_to_arrive_on.strftime("%m-%d-%Y")%></div>
+      <%end%>
+      <div><%=delivery.details%></div>
+      <div>
+        <form action="deliveries/<%=delivery.id%>" method="patch">
+          <input type="hidden" name="arrived" value="true">
+          <button>Mark as received</button>
+        </form>
+      </div>
+    </li>
+    <%end%>
+  </ul>
+</div>
+<div style="background-color: lightgreen;">
+  <h2>Received</h2>
+  <ul>
+    <%@arrived_deliveries.each do |delivery|%>
+    <li>
+      <div><%=delivery.description%></div>
+      <small>
+        <%time_since_update = ((Time.now - delivery.updated_at)/60).to_i%>
+        <%if time_since_update == 0%>
+          <span>Updated less than a minute ago</span>
+        <%elsif time_since_update == 1%>
+          <span>Updated 1 minute ago</span>
+        <%else%>
+          <span>Updated <%=time_since_update%> minutes ago</span>
+        <%end%>
+        <form action="/deliveries/<%=delivery.id%>" method="delete"><button>Delete</button></form>
+      </small>
+    </li>
+    <%end%>
+  </ul>
+</div>
