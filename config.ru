@@ -9,7 +9,7 @@ if Rails.env.development?
 end
 
 map '/' do
-	run Rails.application
+	 run Rails.application
 end
 
 Rails.application.load_server

@@ -1,0 +1,24 @@
+<h1>Delivery Tracker</h1>
+<p>Know if something gets lost in the mail.</p>
+<hr>
+<h2>Expecting a package?</h2>
+<form action="/deliveries" method="post">
+  <div>
+  <label for="description_id">Description </label>
+  <input name="query_description" id="description_id" type="text">
+  </div>
+
+  <div>
+  <label for="supposed_to_arrive_on_id">Supposed to arrive on </label>
+  <input id="supposed_to_arrive_on_id" name="query_supposed_to_arrive_on" type="date">
+  </div>
+
+  <div>
+  <label for="details_id">Details </label>
+  <textarea rows="3" name="query_details" id="details_id"></textarea>
+  </div>
+
+  <button>Log delivery</button>
+
+</form>
+<hr>

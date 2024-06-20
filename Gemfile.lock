@@ -74,6 +74,7 @@ GEM
     ansispan (0.0.1)
     appdev_support (0.2.1)
       tabulo
+    ast (2.4.2)
     awesome_print (1.9.2)
     base64 (0.1.1)
     bcrypt (3.1.20)
@@ -178,6 +179,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    json (2.7.2)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -190,6 +192,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    language_server-protocol (3.17.0.3)
     llhttp-ffi (0.4.0)
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
@@ -219,6 +222,8 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
+    nokogiri (1.15.5-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.15.5-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.15.5-x86_64-linux)
@@ -228,6 +233,10 @@ GEM
       sawyer (~> 0.9)
     oj (3.13.23)
     orm_adapter (0.5.0)
+    parallel (1.25.1)
+    parser (3.3.3.0)
+      ast (~> 2.4.1)
+      racc
     pg (1.4.6)
     pry (0.14.2)
       coderay (~> 1.1)
@@ -281,6 +290,7 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5)
+    rainbow (3.1.1)
     rake (13.0.6)
     ransack (4.0.0)
       activerecord (>= 6.1.5)
@@ -319,8 +329,42 @@ GEM
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
     rspec-support (3.12.1)
+    rubocop (1.64.1)
+      json (~> 2.3)
+      language_server-protocol (>= 3.17.0)
+      parallel (~> 1.10)
+      parser (>= 3.3.0.2)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.31.1, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 3.0)
+    rubocop-ast (1.31.3)
+      parser (>= 3.3.1.0)
+    rubocop-md (1.2.2)
+      rubocop (>= 1.0)
+    rubocop-minitest (0.35.0)
+      rubocop (>= 1.61, < 2.0)
+      rubocop-ast (>= 1.31.1, < 2.0)
+    rubocop-packaging (0.5.2)
+      rubocop (>= 1.33, < 2.0)
+    rubocop-performance (1.21.1)
+      rubocop (>= 1.48.1, < 2.0)
+      rubocop-ast (>= 1.31.1, < 2.0)
+    rubocop-rails (2.25.0)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.33.0, < 2.0)
+      rubocop-ast (>= 1.31.1, < 2.0)
+    rubocop-rails-omakase (1.0.0)
+      rubocop
+      rubocop-minitest
+      rubocop-performance
+      rubocop-rails
     ruby-graphviz (1.2.5)
       rexml
+    ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     rufo (0.16.3)
@@ -347,6 +391,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sqlite3 (1.6.8-arm64-darwin)
     sqlite3 (1.6.8-x86_64-darwin)
     sqlite3 (1.6.8-x86_64-linux)
     stimulus-rails (1.2.2)
@@ -404,6 +449,7 @@ GEM
     zeitwerk (2.6.12)
 
 PLATFORMS
+  arm64-darwin-23
   x86_64-darwin-22
   x86_64-linux
 
@@ -435,6 +481,13 @@ DEPENDENCIES
   redis (~> 4.0)
   rspec-html-matchers
   rspec-rails (~> 6.0.0)
+  rubocop (>= 1.25.1)
+  rubocop-md
+  rubocop-minitest
+  rubocop-packaging
+  rubocop-performance
+  rubocop-rails
+  rubocop-rails-omakase
   rufo
   selenium-webdriver
   simple_form
