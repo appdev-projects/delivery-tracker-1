@@ -67,6 +67,7 @@
           <button>Mark as received</button>
         </form>
       </li>
+      <br>
     <% end %>
 
   </ul>
@@ -82,6 +83,7 @@
         <small> Updated <%= time_ago_in_words(package.updated_at)%>
           <a href="/delete_delivery/<%=package.id%>">Delete</a> </small>
       </li>
+      <br>
     <% end %>
 
   </ul>
