@@ -35,7 +35,7 @@
       <%end%>
       <div><%=delivery.details%></div>
       <div>
-        <form action="modify_delivery/<%=delivery.id%>" method="post">
+        <form action="deliveries/<%=delivery.id%>" method="patch">
           <input type="hidden" name="arrived" value="true">
           <button> Mark as received </button>
         </form>
@@ -53,7 +53,7 @@
       <small>
         <%time_since_update = distance_of_time_in_words_to_now(delivery.updated_at)%>
           Updated <%=time_since_update%> ago
-        <a href="/delete_delivery/<%=delivery.id%>">Delete</a>
+        <form method="delete" action="/deliveries/<%=delivery.id%>"><button>Delete</button></form>
       </small>
     </li>
     <%end%>
