@@ -31,7 +31,7 @@ RUN add-apt-repository -y ppa:git-core/ppa \
     && apt-get install -yq git \
     && rm -rf /var/lib/apt/lists/*
 
-### Container user ###
+### Container users ###
 # '-l': see https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#user
 RUN useradd -l -u 33334 -G sudo -md /home/student -s /bin/bash -p student student \
     # passwordless sudo for users in the 'sudo' group
@@ -41,9 +41,9 @@ WORKDIR $HOME
 # custom Bash prompt
 RUN { echo && echo "PS1='\[\e]0;\u \w\a\]\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \\\$ '" ; } >> .bashrc
 
-### Student user (2) ###
+### Student users (2) ###
 USER student
-# use sudo so that user does not get sudo usage info on (the first) login
+# use sudo so that users does not get sudo usage info on (the first) login
 RUN sudo echo "Running 'sudo' for container: success" && \
     # create .bashrc.d folder and source it in the bashrc
     mkdir /home/student/.bashrc.d && \
@@ -104,7 +104,7 @@ RUN BROWSER_MAJOR=$(google-chrome --version | sed 's/Google Chrome \([0-9]*\).*/
 # Install PostgreSQL
 RUN sudo install-packages postgresql-12 postgresql-contrib-12
 
-# Setup PostgreSQL server for user student
+# Setup PostgreSQL server for users student
 ENV PATH="$PATH:/usr/lib/postgresql/12/bin"
 ENV PGDATA="/workspaces/.pgsql/data"
 RUN sudo mkdir -p $PGDATA
