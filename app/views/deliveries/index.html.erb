@@ -35,7 +35,7 @@
       <%end%>
       <div><%=delivery.details%></div>
       <div>
-        <form action="deliveries/<%=delivery.id%>" method="patch">
+        <form action="modify_delivery/<%=delivery.id%>" method="post">
           <input type="hidden" name="arrived" value="true">
           <button> Mark as received </button>
         </form>

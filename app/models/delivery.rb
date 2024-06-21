@@ -12,4 +12,6 @@
 #  user_id               :integer
 #
 class Delivery < ApplicationRecord
+  validates(:description, presence: true)
+  validates(:supposed_to_arrive_on, presence: true)
 end

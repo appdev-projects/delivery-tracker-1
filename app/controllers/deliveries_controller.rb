@@ -7,6 +7,8 @@ class DeliveriesController < ApplicationController
     @waiting_on_deliveries = @my_deliveries.where(arrived: false)
     @arrived_deliveries = @my_deliveries.where(arrived: true)
   end
+  def show
+  end
   def create
     @delivery = Delivery.new
     @delivery.description = params[:query_description]
@@ -16,7 +18,7 @@ class DeliveriesController < ApplicationController
 
     if @delivery.valid?
       @delivery.save
-      redirect_to("/deliveries", notice:"Added to log")
+      redirect_to("/deliveries", notice:"Added to list")
     else
       redirect_to("/deliveries", alert: "Delivery failed to create successfully")
     end
