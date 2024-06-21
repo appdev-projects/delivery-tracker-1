@@ -3,3 +3,99 @@
   <p>Know if something gets lost in the mail.</p>
   <hr>
 </div>
+
+
+<div>
+  <h2>Expecting a package?</h2>
+  <form action="/insert_delivery" method="post">
+    <div>
+      <label for="description_box">
+        Description
+      </label>
+
+      <input type="text" id="description_box" name="query_description">
+    </div>
+
+    <div>
+      <label for="supposed_to_arrive_on_box">
+        Supposed to arrive on
+      </label>
+
+      <input type="date" id="supposed_to_arrive_on_box" name="query_supposed_to_arrive_on">
+    </div>
+
+    <div>
+      <label for="details_box">
+        Details
+      </label>
+
+      <textarea id="details_box" name="query_details" rows="3"></textarea>
+    </div>
+
+    <div>
+      <label for="user_id_box">
+        User
+      </label>
+
+      <input type="hidden" id="user_id_box" name="query_user_id" value="<%= current_user.id %>">
+    </div>
+
+    <button>
+      Log delivery
+    </button>
+  </form>
+</div>
+
+<hr>
+
+<div class="waiting_on">
+  <h2>Waiting on</h2>
+  <ul>
+    <% @pending_deliveries.each do |waiting_delivery| %>
+      <li>
+        <%= waiting_delivery.description %><br>
+        <!-- If the package arrival date < today's day, then style red -->
+        <% if waiting_delivery.supposed_to_arrive_on < Date.today %>
+          <span style="color: red;">Supposed to arrive on <%= waiting_delivery.supposed_to_arrive_on %></span>
+        <% else %>
+          Supposed to arrive on <%= waiting_delivery.supposed_to_arrive_on %>
+        <% end %>
+        <br>
+        <%= waiting_delivery.details %><br>
+        <form action="/modify_delivery/<%= waiting_delivery.id %>" method="post">
+          <input type="hidden" name="arrived">
+          <button>Mark as received</button>
+        </form>
+      </li>
+      <br>
+    <% end %>
+  </ul>
+</div>
+
+<hr>
+
+
+<div class="received" style="background-color: lightgreen">
+  <h2>Received</h2>
+  <ul>
+    <% @list_of_arrived_deliveries.each do |arrived_delivery| %>
+      <li>
+        <%= arrived_delivery.description %><br>
+        <small>
+          <% minutes = ((Time.current - arrived_delivery.updated_at) / 60).round %>
+          <% if minutes >= 60 %>
+            <% hours = minutes / 60 %>
+            <% if hours == 1 %>
+              Updated <%= hours %> hour ago
+            <% else %>
+              Updated <%= hours %> hours ago
+            <% end %>
+          <% else %>
+            Updated <%= minutes %> minutes ago
+          <% end %>
+          <a href="/delete_delivery/<%= arrived_delivery.id %>">Delete</a>
+        </small>
+      </li>
+    <% end %>
+  </ul>
+</div>
