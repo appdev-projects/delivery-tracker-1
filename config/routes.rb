@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # Routes for the Delivery resource:
 
   # CREATE
-  post("/insert_delivery", { :controller => "deliveries", :action => "create" })
+  post("/insert_delivery", { :controller => "users", :action => "create" })
           
   # READ
   get("/deliveries", { :controller => "deliveries", :action => "index" })
@@ -11,10 +11,10 @@ Rails.application.routes.draw do
   
   # UPDATE
   
-  post("/modify_delivery/:path_id", { :controller => "deliveries", :action => "update" })
+  post("/modify_delivery/:path_id", { :controller => "users", :action => "update" })
   
   # DELETE
-  get("/delete_delivery/:path_id", { :controller => "deliveries", :action => "destroy" })
+  get("/delete_delivery/:path_id", { :controller => "users", :action => "destroy" })
 
   #------------------------------
 

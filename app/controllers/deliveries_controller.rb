@@ -17,5 +17,4 @@ class DeliveriesController < ApplicationController
     render({ :template => "deliveries/show" })
   end
 
-  
 end
