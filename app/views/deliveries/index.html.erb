@@ -51,14 +51,8 @@
     <li>
       <div><%=delivery.description%></div>
       <small>
-        <%time_since_update = ((Time.now - delivery.updated_at)/60).to_i%>
-        <%if time_since_update == 0%>
-          <span>Updated less than a minute ago</span>
-        <%elsif time_since_update == 1%>
-          <span>Updated 1 minute ago</span>
-        <%else%>
-          <span>Updated <%=time_since_update%> minutes ago</span>
-        <%end%>
+        <%time_since_update = distance_of_time_in_words_to_now(delivery.updated_at)%>
+          Updated <%=time_since_update%> ago
         <a href="/delete_delivery/<%=delivery.id%>">Delete</a>
       </small>
     </li>
