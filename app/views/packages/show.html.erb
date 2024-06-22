@@ -1,0 +1,131 @@
+<div>
+  <div>
+    <h1>
+      Package #<%= @the_package.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/packages">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_package/<%= @the_package.id %>">
+          Delete package
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_package.description %>
+      </dd>
+
+      <dt>
+        Supposed to arrive
+      </dt>
+      <dd>
+        <%= @the_package.supposed_to_arrive %>
+      </dd>
+
+      <dt>
+        Actual arrive
+      </dt>
+      <dd>
+        <%= @the_package.actual_arrive %>
+      </dd>
+
+      <dt>
+        Details
+      </dt>
+      <dd>
+        <%= @the_package.details %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_package.user_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_package.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_package.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit package
+    </h2>
+
+    <form action="/modify_package/<%= @the_package.id %>"  method="post" >
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description" value="<%= @the_package.description %>">
+      </div>
+
+      <div>
+        <label for="supposed_to_arrive_box">
+          Supposed to arrive
+        </label>
+
+        <input type="date" id="supposed_to_arrive_box" name="query_supposed_to_arrive" value="<%= @the_package.supposed_to_arrive %>">
+      </div>
+
+      <div>
+        <label for="actual_arrive_box">
+          Actual arrive
+        </label>
+
+        <input type="date" id="actual_arrive_box" name="query_actual_arrive" value="<%= @the_package.actual_arrive %>">
+      </div>
+
+      <div>
+        <label for="details_box">
+          Details
+        </label>
+
+        <textarea id="details_box" name="query_details"><%= @the_package.details %></textarea>
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_package.user_id %>">
+      </div>
+
+      <button>
+        Update package
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
