@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users
+  root "packages#index" 
+  
   # Routes for the Package resource:
-
+  get("/", { :controller => "packages", :action => "index" })
   # CREATE
   post("/insert_package", { :controller => "packages", :action => "create" })
           
@@ -21,5 +24,5 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
   # root "articles#index"
-  root "boards#index" 
+  
 end
