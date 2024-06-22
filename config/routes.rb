@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # Routes for the Delivery resource:
   devise_for :users
   # Routes for the Delivery resource:
   root to: "users#index"
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
   get("/deliveries", { :controller => "deliveries", :action => "index" })
   
   get("/deliveries/:path_id", { :controller => "deliveries", :action => "show" })
-  
+
   # UPDATE
   
   post("/modify_delivery/:path_id", { :controller => "deliveries", :action => "update" })

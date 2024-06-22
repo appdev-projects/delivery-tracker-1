@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_21_163340) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_22_220304) do
   create_table "deliveries", force: :cascade do |t|
     t.integer "user_id"
     t.string "description"
     t.text "details"
     t.date "supposed_to_arrive_on"
+    t.boolean "arrived"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "arrived"
   end
 
   create_table "users", force: :cascade do |t|
