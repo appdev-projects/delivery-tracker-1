@@ -1,9 +1,8 @@
 <div>
   <div>
     <h1>
-      Delivery Tracker
+      List of all packages
     </h1>
-    <p>Know if something gets lost in the mail.</p>
   </div>
 </div>
 
@@ -12,7 +11,7 @@
 <div>
   <div>
     <h2>
-      Expecting a package?
+      Add a new package
     </h2>
 
     <form action="/insert_package" method="post">
@@ -33,6 +32,14 @@
       </div>
 
       <div>
+        <label for="actual_arrive_box">
+          Actual arrive
+        </label>
+
+        <input type="date" id="actual_arrive_box" name="query_actual_arrive">
+      </div>
+
+      <div>
         <label for="details_box">
           Details
         </label>
@@ -40,8 +47,16 @@
         <textarea id="details_box" name="query_details" rows="3"></textarea>
       </div>
 
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
       <button>
-        Log delivery
+        Create package
       </button>
     </form>
   </div>
@@ -50,22 +65,85 @@
 <hr>
 <div>
   <div>
-    <h2>
-      Waiting on
-      <ul>
-        <% @list_of_packages.each do |package|%>
-        <li>
-          <div>package.description</div>
-          <div>package.supposed_to_arrive</div>
-          <div>package.details</div>
-          <form action="">
-            <button>Mark as recived</button>
-          </form>
-        </li>
-        <%end%>
-      </ul>
-    </h2>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
 
+        <th>
+          Description
+        </th>
+
+        <th>
+          Supposed to arrive
+        </th>
+
+        <th>
+          Actual arrive
+        </th>
+
+        <th>
+          Details
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_packages.each do |a_package| %>
+      <tr>
+        <td>
+          <%= a_package.id %>
+        </td>
+
+        <td>
+          <%= a_package.description %>
+        </td>
+
+        <td>
+          <%= a_package.supposed_to_arrive %>
+        </td>
+
+        <td>
+          <%= a_package.actual_arrive %>
+        </td>
+
+        <td>
+          <%= a_package.details %>
+        </td>
+
+        <td>
+          <%= a_package.user_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_package.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_package.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/packages/<%= a_package.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
   </div>
 </div>
 
