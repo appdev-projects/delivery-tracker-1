@@ -3,7 +3,6 @@
     <h1>
       Delivery Tracker
     </h1>
-    <p><%= params%></p>
     <p>Know if something gets lost in the mail.</p>
   </div>
 </div>
@@ -96,7 +95,7 @@
 
 <hr>
 <div>
-  <div class="waiting_on">
+  <div style="background-color: yellow" class="waiting_on">
     <h2>
       Waiting on
     </h2>  
@@ -104,7 +103,6 @@
       <% @not_arrived.each do |delivery|%>
       <form action="/mark_received/<%=delivery.id%>">
         <li>
-          <div><%=delivery.id%></div>
           <div><%= delivery.description%></div>
           <div>Supposed to arrive on <%= delivery.supposed_to_arrive%></div>
           <div><%= delivery.details%></div>
@@ -115,7 +113,7 @@
     </ul>
   </div>
 
-  <div class="received">
+  <div  style="background-color: green" class="received">
     <h2>
       Received
     </h2>  
