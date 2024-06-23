@@ -1,9 +1,9 @@
 # == Schema Information
 #
-# Table name: packages
+# Table name: deliveries
 #
 #  id                 :integer          not null, primary key
-#  actual_arrive      :date
+#  actual_arrive      :boolean
 #  description        :string
 #  details            :text
 #  supposed_to_arrive :date

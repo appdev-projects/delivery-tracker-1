@@ -21,7 +21,7 @@ class DeliveriesController < ApplicationController
     the_delivery = Delivery.new
     the_delivery.description = params.fetch("query_description")
     the_delivery.supposed_to_arrive = params.fetch("query_supposed_to_arrive")
-    the_delivery.actual_arrive = params.fetch("query_actual_arrive")
+    the_delivery.actual_arrive = false
     the_delivery.details = params.fetch("query_details")
     the_delivery.user_id = params.fetch("query_user_id")
 
