@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # UPDATE
   
   post("/modify_delivery/:path_id", { :controller => "deliveries", :action => "update" })
+  post("/mark_received/:path_id", { :controller => "deliveries", :action => "mark_as_received" })
   
   # DELETE
   get("/delete_delivery/:path_id", { :controller => "deliveries", :action => "destroy" })

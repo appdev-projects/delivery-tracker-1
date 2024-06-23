@@ -3,6 +3,7 @@
     <h1>
       Delivery Tracker
     </h1>
+    <p><%= params%></p>
     <p>Know if something gets lost in the mail.</p>
   </div>
 </div>
@@ -61,7 +62,7 @@
       Expecting a package?
     </h2>
 
-    <form action="/insert_package" method="post">
+    <form action="/insert_deliveries" method="post">
       <div>
         <label for="description_box">
           Description
@@ -100,13 +101,14 @@
       Waiting on
     </h2>  
     <ul>
-      <% @list_of_deliveries.each do |delivery|%>
+      <% @not_arrived.each do |delivery|%>
       <li>
-        <div><%= delivery.description%></div>
-        <div><%=delivery.supposed_to_arrive%></div>
-        <div><%=delivery.details%></div>
-        <form action="">
-          <button>Mark as recived</button>
+        <form action="/mark_received/<%=delivery.id%>">
+          <div><%=delivery.id%></div>
+          <div><%= delivery.description%></div>
+          <div>Supposed to arrive on <%= delivery.supposed_to_arrive%></div>
+          <div><%= delivery.details%></div>
+          <button>Mark as received</button>
         </form>
       </li>
       <%end%>
@@ -118,14 +120,10 @@
       Received
     </h2>  
     <ul>
-      <% @list_of_deliveries.each do |delivery|%>
+      <% @arrived.each do |delivery|%>
       <li>
         <div><%= delivery.description%></div>
-        <div><%=delivery.supposed_to_arrive%></div>
-        <div><%=delivery.details%></div>
-        <form action="">
-          <button>Mark as recived</button>
-        </form>
+        <small><%= delivery.updated_at%> <a href="">Delete</a></small>
       </li>
       <%end%>
     </ul>

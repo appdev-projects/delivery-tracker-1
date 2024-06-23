@@ -23,4 +23,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_many :deliveries, class_name: "Delivery", foreign_key: "user_id"
+
 end

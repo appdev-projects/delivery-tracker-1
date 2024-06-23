@@ -1,8 +1,10 @@
 class DeliveriesController < ApplicationController
   def index
-    matching_deliveries = Delivery.all
-
+    matching_deliveries = Delivery.where(:user_id => current_user.id)
     @list_of_deliveries = matching_deliveries.order({ :created_at => :desc })
+    @not_arrived = @list_of_deliveries.where(:actual_arrive => false)
+    @arrived =  @list_of_deliveries.where(:actual_arrive => true)
+    
 
     render({ :template => "deliveries/index" })
   end
@@ -24,11 +26,25 @@ class DeliveriesController < ApplicationController
     the_delivery.actual_arrive = false
     the_delivery.details = params.fetch("query_details")
     # the_delivery.user_id = params.fetch("query_user_id")
-    the_delivery.user_id = current_user_id
+    the_delivery.user_id = current_user.id
 
     if the_delivery.valid?
       the_delivery.save
       redirect_to("/deliveries", { :notice => "Delivery created successfully." })
+    else
+      redirect_to("/deliveries", { :alert => the_delivery.errors.full_messages.to_sentence })
+    end
+  end
+
+  def mark_as_received
+    the_id = params.fetch("path_id")
+    the_delivery = Delivery.where({ :id => the_id }).at(0)
+
+    the_delivery.actual_arrive = true
+
+    if the_delivery.valid?
+      the_delivery.save
+      redirect_to("/deliveries", { :notice => "Delivery marked received successfully." })
     else
       redirect_to("/deliveries", { :alert => the_delivery.errors.full_messages.to_sentence })
     end
