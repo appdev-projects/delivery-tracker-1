@@ -72,7 +72,7 @@
 
       <div>
         <label for="supposed_to_arrive_box">
-          Supposed to arrive
+          Supposed to arrive on
         </label>
 
         <input type="date" id="supposed_to_arrive_box" name="query_supposed_to_arrive">
@@ -95,23 +95,40 @@
 
 <hr>
 <div>
-  <div>
+  <div class="waiting_on">
     <h2>
       Waiting on
-      <ul>
-        <% @list_of_deliveries.each do |delivery|%>
-        <li>
-          <div>delivery.description</div>
-          <div>delivery.supposed_to_arrive</div>
-          <div>delivery.details</div>
-          <form action="">
-            <button>Mark as recived</button>
-          </form>
-        </li>
-        <%end%>
-      </ul>
-    </h2>
+    </h2>  
+    <ul>
+      <% @list_of_deliveries.each do |delivery|%>
+      <li>
+        <div><%= delivery.description%></div>
+        <div><%=delivery.supposed_to_arrive%></div>
+        <div><%=delivery.details%></div>
+        <form action="">
+          <button>Mark as recived</button>
+        </form>
+      </li>
+      <%end%>
+    </ul>
+  </div>
 
+  <div class="received">
+    <h2>
+      Received
+    </h2>  
+    <ul>
+      <% @list_of_deliveries.each do |delivery|%>
+      <li>
+        <div><%= delivery.description%></div>
+        <div><%=delivery.supposed_to_arrive%></div>
+        <div><%=delivery.details%></div>
+        <form action="">
+          <button>Mark as recived</button>
+        </form>
+      </li>
+      <%end%>
+    </ul>
   </div>
 </div>
 

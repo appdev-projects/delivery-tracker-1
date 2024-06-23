@@ -23,7 +23,8 @@ class DeliveriesController < ApplicationController
     the_delivery.supposed_to_arrive = params.fetch("query_supposed_to_arrive")
     the_delivery.actual_arrive = false
     the_delivery.details = params.fetch("query_details")
-    the_delivery.user_id = params.fetch("query_user_id")
+    # the_delivery.user_id = params.fetch("query_user_id")
+    the_delivery.user_id = current_user_id
 
     if the_delivery.valid?
       the_delivery.save
