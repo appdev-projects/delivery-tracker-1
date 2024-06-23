@@ -12,4 +12,14 @@
 #  user_id               :integer
 #
 class Delivery < ApplicationRecord
+  belongs_to(:user)
+
+  def self.active
+    where(arrived: false)
+  end
+
+  def self.received
+    where(arrived: true)
+  end
+  
 end
