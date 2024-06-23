@@ -22,5 +22,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
-  has_many :packages, class_name: "Package", foreign_key: "user_id"
+  has_many :deliveries, class_name: "Delivery", foreign_key: "user_id"
 end

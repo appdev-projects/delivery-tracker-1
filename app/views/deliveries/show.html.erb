@@ -1,19 +1,19 @@
 <div>
   <div>
     <h1>
-      Package #<%= @the_package.id %> details
+      elivery #<%= @the_delivery.id %> details
     </h1>
 
     <div>
       <div>
-        <a href="/packages">
+        <a href="/deliveries">
           Go back
         </a>
       </div>
 
       <div>
-        <a href="/delete_package/<%= @the_package.id %>">
-          Delete package
+        <a href="/delete_delivery/<%= @the_delivery.id %>">
+          Delete delivery
         </a>
       </div>
     </div>
@@ -23,49 +23,49 @@
         Description
       </dt>
       <dd>
-        <%= @the_package.description %>
+        <%= @the_delivery.description %>
       </dd>
 
       <dt>
         Supposed to arrive
       </dt>
       <dd>
-        <%= @the_package.supposed_to_arrive %>
+        <%= @the_delivery.supposed_to_arrive %>
       </dd>
 
       <dt>
         Actual arrive
       </dt>
       <dd>
-        <%= @the_package.actual_arrive %>
+        <%= @the_delivery.actual_arrive %>
       </dd>
 
       <dt>
         Details
       </dt>
       <dd>
-        <%= @the_package.details %>
+        <%= @the_delivery.details %>
       </dd>
 
       <dt>
         User
       </dt>
       <dd>
-        <%= @the_package.user_id %>
+        <%= @the_delivery.user_id %>
       </dd>
 
       <dt>
         Created at
       </dt>
       <dd>
-        <%= time_ago_in_words(@the_package.created_at) %> ago
+        <%= time_ago_in_words(@the_delivery.created_at) %> ago
       </dd>
 
       <dt>
         Updated at
       </dt>
       <dd>
-        <%= time_ago_in_words(@the_package.updated_at) %> ago
+        <%= time_ago_in_words(@the_delivery.updated_at) %> ago
       </dd>
     </dl>
   </div>
@@ -77,16 +77,16 @@
 <div>
   <div>
     <h2>
-      Edit package
+      Edit delivery
     </h2>
 
-    <form action="/modify_package/<%= @the_package.id %>"  method="post" >
+    <form action="/modify_delivery/<%= @the_delivery.id %>"  method="post" >
       <div>
         <label for="description_box">
           Description
         </label>
 
-        <input type="text" id="description_box" name="query_description" value="<%= @the_package.description %>">
+        <input type="text" id="description_box" name="query_description" value="<%= @the_delivery.description %>">
       </div>
 
       <div>
@@ -94,7 +94,7 @@
           Supposed to arrive
         </label>
 
-        <input type="date" id="supposed_to_arrive_box" name="query_supposed_to_arrive" value="<%= @the_package.supposed_to_arrive %>">
+        <input type="date" id="supposed_to_arrive_box" name="query_supposed_to_arrive" value="<%= @the_delivery.supposed_to_arrive %>">
       </div>
 
       <div>
@@ -102,7 +102,7 @@
           Actual arrive
         </label>
 
-        <input type="date" id="actual_arrive_box" name="query_actual_arrive" value="<%= @the_package.actual_arrive %>">
+        <input type="date" id="actual_arrive_box" name="query_actual_arrive" value="<%= @the_delivery.actual_arrive %>">
       </div>
 
       <div>
@@ -110,7 +110,7 @@
           Details
         </label>
 
-        <textarea id="details_box" name="query_details"><%= @the_package.details %></textarea>
+        <textarea id="details_box" name="query_details"><%= @the_delivery.details %></textarea>
       </div>
 
       <div>
@@ -118,11 +118,11 @@
           User
         </label>
 
-        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_package.user_id %>">
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_delivery.user_id %>">
       </div>
 
       <button>
-        Update package
+        Update delivery
       </button>
     </form>
   </div>

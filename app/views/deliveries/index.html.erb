@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      List of all packages
+      List of all deliveries
     </h1>
   </div>
 </div>
@@ -11,10 +11,10 @@
 <div>
   <div>
     <h2>
-      Add a new package
+      Add a new delivery
     </h2>
 
-    <form action="/insert_package" method="post">
+    <form action="/insert_delivery" method="post">
       <div>
         <label for="description_box">
           Description
@@ -56,7 +56,7 @@
       </div>
 
       <button>
-        Create package
+        Create delivery
       </button>
     </form>
   </div>
@@ -103,41 +103,41 @@
         </th>
       </tr>
 
-      <% @list_of_packages.each do |a_package| %>
+      <% @list_of_deliveries.each do |a_delivery| %>
       <tr>
         <td>
-          <%= a_package.id %>
+          <%= a_delivery.id %>
         </td>
 
         <td>
-          <%= a_package.description %>
+          <%= a_delivery.description %>
         </td>
 
         <td>
-          <%= a_package.supposed_to_arrive %>
+          <%= a_delivery.supposed_to_arrive %>
         </td>
 
         <td>
-          <%= a_package.actual_arrive %>
+          <%= a_delivery.actual_arrive %>
         </td>
 
         <td>
-          <%= a_package.details %>
+          <%= a_delivery.details %>
         </td>
 
         <td>
-          <%= a_package.user_id %>
+          <%= a_delivery.user_id %>
         </td>
 
         <td>
-          <%= time_ago_in_words(a_package.created_at) %> ago
+          <%= time_ago_in_words(a_delivery.created_at) %> ago
         </td>
         <td>
-          <%= time_ago_in_words(a_package.updated_at) %> ago
+          <%= time_ago_in_words(a_delivery.updated_at) %> ago
         </td>
 
         <td>
-          <a href="/packages/<%= a_package.id %>">
+          <a href="/deliveries/<%= a_delivery.id %>">
             Show details
           </a>
         </td>

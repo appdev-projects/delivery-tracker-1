@@ -1,23 +1,23 @@
 Rails.application.routes.draw do
   devise_for :users
-  root "packages#index" 
+  root "deliveries#index" 
   
-  # Routes for the Package resource:
-  get("/", { :controller => "packages", :action => "index" })
+  # Routes for the deliverie resource:
+  get("/", { :controller => "deliveries", :action => "index" })
   # CREATE
-  post("/insert_package", { :controller => "packages", :action => "create" })
+  post("/insert_deliveries", { :controller => "deliveries", :action => "create" })
           
   # READ
-  get("/packages", { :controller => "packages", :action => "index" })
+  get("/deliveries", { :controller => "deliveries", :action => "index" })
   
-  get("/packages/:path_id", { :controller => "packages", :action => "show" })
+  get("/deliveries/:path_id", { :controller => "deliveries", :action => "show" })
   
   # UPDATE
   
-  post("/modify_package/:path_id", { :controller => "packages", :action => "update" })
+  post("/modify_delivery/:path_id", { :controller => "deliveries", :action => "update" })
   
   # DELETE
-  get("/delete_package/:path_id", { :controller => "packages", :action => "destroy" })
+  get("/delete_delivery/:path_id", { :controller => "deliveries", :action => "destroy" })
 
   #------------------------------
 
