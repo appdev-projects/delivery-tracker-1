@@ -102,15 +102,15 @@
     </h2>  
     <ul>
       <% @not_arrived.each do |delivery|%>
-      <li>
-        <form action="/mark_received/<%=delivery.id%>">
+      <form action="/mark_received/<%=delivery.id%>">
+        <li>
           <div><%=delivery.id%></div>
           <div><%= delivery.description%></div>
           <div>Supposed to arrive on <%= delivery.supposed_to_arrive%></div>
           <div><%= delivery.details%></div>
           <button>Mark as received</button>
-        </form>
-      </li>
+        </li>
+      </form>
       <%end%>
     </ul>
   </div>
@@ -123,7 +123,7 @@
       <% @arrived.each do |delivery|%>
       <li>
         <div><%= delivery.description%></div>
-        <small><%= delivery.updated_at%> <a href="">Delete</a></small>
+        <small><%= delivery.updated_at%> <a href="/delete_delivery/<%= delivery.id%>">Delete</a></small>
       </li>
       <%end%>
     </ul>

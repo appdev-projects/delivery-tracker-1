@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   
   # Routes for the deliverie resource:
   get("/", { :controller => "deliveries", :action => "index" })
+  
   # CREATE
   post("/insert_deliveries", { :controller => "deliveries", :action => "create" })
           
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
   # UPDATE
   
   post("/modify_delivery/:path_id", { :controller => "deliveries", :action => "update" })
-  post("/mark_received/:path_id", { :controller => "deliveries", :action => "mark_as_received" })
+  get("/mark_received/:path_id", { :controller => "deliveries", :action => "mark_as_received" })
   
   # DELETE
   get("/delete_delivery/:path_id", { :controller => "deliveries", :action => "destroy" })
