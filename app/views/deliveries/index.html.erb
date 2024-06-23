@@ -1,0 +1,85 @@
+<div>
+  <div>
+    <h1>
+      Delivery Tracker
+    </h1>
+    <p>Know if something gets lost in the mail.</p>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Expecting a package?
+    </h2>
+
+    <form action="/insert_deliveries" method="post">
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+      </div>
+
+      <div>
+        <label for="supposed_to_arrive_box">
+          Supposed to arrive on
+        </label>
+
+        <input type="date" id="supposed_to_arrive_box" name="query_supposed_to_arrive">
+      </div>
+
+      <div>
+        <label for="details_box">
+          Details
+        </label>
+
+        <textarea id="details_box" name="query_details" rows="3"></textarea>
+      </div>
+
+      <button>
+        Log delivery
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div style="background-color: lightgoldenrodyellow" class="waiting_on">
+    <h2>
+      Waiting on
+    </h2>  
+    <ul>
+      <% @not_arrived.each do |delivery|%>
+      <form action="/mark_received/<%=delivery.id%>">
+        <li>
+          <div><%= delivery.description%></div>
+          <div>Supposed to arrive on <%= delivery.supposed_to_arrive%></div>
+          <div><%= delivery.details%></div>
+          <button>Mark as received</button>
+        </li>
+      </form>
+      <%end%>
+    </ul>
+  </div>
+
+  <div  style="background-color: lightgreen" class="received">
+    <h2>
+      Received
+    </h2>  
+    <ul>
+      <% @arrived.each do |delivery|%>
+      <li>
+        <div><%= delivery.description%></div>
+        <small><%= delivery.updated_at%> <a href="/delete_delivery/<%= delivery.id%>">Delete</a></small>
+      </li>
+      <%end%>
+    </ul>
+  </div>
+</div>
+
+<hr>
