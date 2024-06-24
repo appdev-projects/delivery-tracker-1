@@ -104,3 +104,26 @@
     <% end %>
   </ul>
 </div>
+
+<hr>
+
+<div>
+  <h2>All deliveries</h2>
+  <ul>
+    <% @list_of_deliveries.each do |delivery| %>
+      <% if delivery.user.id == current_user.id %>
+        <li>
+          <div style="padding-top: 8px">
+            <%= delivery.description %>
+          </div>
+          <div>
+            <%= delivery.details %>
+          </div>
+          <div>
+            <small>Updated <%= delivery.updated_at %></small>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
