@@ -30,6 +30,8 @@
         <textarea name="query_details" id="details_box" rows="3"></textarea>
       </div>
 
+      <input type="hidden" name="query_user_id" value="<%= current_user.id %>">
+     
       <button>Log delivery</button>
 
     </form>
@@ -46,7 +48,7 @@
         <div style="color: red">Supposed to arrive on <%= a_delivery.supposed_to_arrive_on %></div>
         <div><%= a_delivery.details %></div>
         <div>
-          <form action="/modify_deliver/<%= a_delivery.id %>" method="post">
+          <form action="/modify_delivery/<%= a_delivery.id %>" method="post">
             <input type="hidden" name="arrived" value="true">
             <button>Mark as received</button>
           </form>
