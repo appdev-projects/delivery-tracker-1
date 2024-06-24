@@ -14,7 +14,7 @@ class PackagesController < ApplicationController
     @delivery = Delivery.new(delivery_params)
     @delivery.user = current_user
     if @delivery.save
-      redirect_to("/", { notice: "Delivery created successfully." })
+      redirect_to("/", { notice: "Added to list" })
     else
       render("packages/new")
     end

@@ -1,4 +1,4 @@
-<div>
+div>
   <div>
     <h1>
       Package #<%= @delivery.id %> details
@@ -65,13 +65,13 @@
       Edit package
     </h2>
 
-    <%= form_with url: "/modify_package/#{@delivery.id}", method: :post do %>
+    <%= form_with({ :url => "/modify_package/#{@delivery.id}", :method => :post }) do |form| %>
       <div>
         <label for="description_box">
           Description
         </label>
 
-        <input type="text" id="description_box" name="query_description" value="<%= @delivery.description %>">
+        <input type="text" id="description_box" name="delivery[description]" value="<%= @delivery.description %>">
       </div>
 
       <div>
@@ -79,7 +79,7 @@
           Details
         </label>
 
-        <input type="text" id="details_box" name="query_details" value="<%= @delivery.details %>">
+        <input type="text" id="details_box" name="delivery[details]" value="<%= @delivery.details %>">
       </div>
 
       <div>
@@ -87,7 +87,7 @@
           Supposed to arrive on
         </label>
 
-        <input type="date" id="supposed_to_arrive_on_box" name="query_supposed_to_arrive_on" value="<%= @delivery.supposed_to_arrive_on %>">
+        <input type="date" id="supposed_to_arrive_on_box" name="delivery[supposed_to_arrive_on]" value="<%= @delivery.supposed_to_arrive_on %>">
       </div>
 
       <button>
@@ -98,3 +98,12 @@
 </div>
 
 <hr>
+
+<div>
+  <%= form_with({ :url => "/modify_package/#{@delivery.id}", :method => :post }) do |form| %>
+    <%= form.fields_for(:delivery) do |d| %>
+      <%= d.hidden_field(:arrived, { :value => true }) %>
+    <% end %>
+    <%= form.submit "Mark as received" %>
+  <% end %>
+</div>

@@ -8,7 +8,7 @@
 <div>
   <h2>Expecting a package?</h2>
 
-  <%= form_with url: "/insert_package", method: :post do |form| %>
+  <%= form_with model: Delivery.new, url: "/insert_package", method: :post do |form| %>
     <div>
       <label for="description_box">Description</label>
       <%= form.text_field :description, id: "description_box" %>
@@ -41,9 +41,9 @@
         </div>
         <div><%= delivery.details %></div>
         <div>
-          <%= form_with url: "/modify_package/#{delivery.id}", method: :post do |form| %>
+          <%= form_with model: delivery, url: "/modify_package/#{delivery.id}", method: :post do |form| %>
             <%= form.hidden_field :arrived, value: true %>
-            <%= form.submit "Mark as received" %>
+            <button type="submit">Mark as received</button>
           <% end %>
         </div>
         <br>
