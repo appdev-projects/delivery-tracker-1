@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
   devise_for :users
   root "deliveries#index" 
   
@@ -24,14 +23,9 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-=======
->>>>>>> parent of 9579cb6 (Generated package)
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   # root "articles#index"
-<<<<<<< HEAD
   
-=======
->>>>>>> parent of 9579cb6 (Generated package)
 end

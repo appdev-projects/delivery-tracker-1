@@ -1,4 +1,6 @@
 class DeliveriesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     matching_deliveries = Delivery.where(:user_id => current_user.id)
     @list_of_deliveries = matching_deliveries.order({ :created_at => :desc })
