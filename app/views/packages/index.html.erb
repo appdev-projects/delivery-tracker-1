@@ -1,0 +1,72 @@
+<div>
+  <h1>Delivery Tracker</h1>
+  <p>Know if something gets lost in the mail.</p>
+</div>
+
+<hr>
+
+<div>
+  <h2>Expecting a package?</h2>
+
+  <%= form_with url: "/insert_package", method: :post do |form| %>
+    <div>
+      <label for="description_box">Description</label>
+      <%= form.text_field :description, id: "description_box" %>
+    </div>
+
+    <div>
+      <label for="supposed_to_arrive_on_box">Supposed to arrive on</label>
+      <%= form.date_field :supposed_to_arrive_on, id: "supposed_to_arrive_on_box" %>
+    </div>
+
+    <div>
+      <label for="details_box">Details</label>
+      <%= form.text_area :details, id: "details_box", rows: 3 %>
+    </div>
+
+    <button>Log delivery</button>
+  <% end %>
+</div>
+
+<hr>
+
+<div class="waiting_on">
+  <h2>Waiting on</h2>
+  <ul>
+    <% @deliveries.each do |delivery| %>
+      <li>
+        <div><%= delivery.description %></div>
+        <div style="color: <%= delivery.supposed_to_arrive_on < Date.today ? 'red' : '' %>">
+          Supposed to arrive on <%= delivery.supposed_to_arrive_on %>
+        </div>
+        <div><%= delivery.details %></div>
+        <div>
+          <%= form_with url: "/modify_package/#{delivery.id}", method: :post do |form| %>
+            <%= form.hidden_field :arrived, value: true %>
+            <%= form.submit "Mark as received" %>
+          <% end %>
+        </div>
+        <br>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<hr>
+
+<div class="received">
+  <h2>Received</h2>
+  <ul>
+    <% @received_deliveries.each do |delivery| %>
+      <li>
+        <div><%= delivery.description %></div>
+        <div>
+          <small>
+            Updated <%= time_ago_in_words(delivery.updated_at) %> ago
+            <a href="/delete_package/<%= delivery.id %>">Delete</a>
+          </small>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

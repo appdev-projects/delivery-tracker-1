@@ -1,0 +1,100 @@
+<div>
+  <div>
+    <h1>
+      Package #<%= @delivery.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/packages">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_package/<%= @delivery.id %>">
+          Delete package
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @delivery.description %>
+      </dd>
+
+      <dt>
+        Details
+      </dt>
+      <dd>
+        <%= @delivery.details %>
+      </dd>
+
+      <dt>
+        Supposed to arrive on
+      </dt>
+      <dd>
+        <%= @delivery.supposed_to_arrive_on %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@delivery.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@delivery.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Edit package
+    </h2>
+
+    <%= form_with url: "/modify_package/#{@delivery.id}", method: :post do %>
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description" value="<%= @delivery.description %>">
+      </div>
+
+      <div>
+        <label for="details_box">
+          Details
+        </label>
+
+        <input type="text" id="details_box" name="query_details" value="<%= @delivery.details %>">
+      </div>
+
+      <div>
+        <label for="supposed_to_arrive_on_box">
+          Supposed to arrive on
+        </label>
+
+        <input type="date" id="supposed_to_arrive_on_box" name="query_supposed_to_arrive_on" value="<%= @delivery.supposed_to_arrive_on %>">
+      </div>
+
+      <button>
+        Update package
+      </button>
+    <% end %>
+  </div>
+</div>
+
+<hr>
