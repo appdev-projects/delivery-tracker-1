@@ -4,7 +4,7 @@
       Delivery Tracker
     </h1>
     <p>
-      Know if something gets lost in the mail
+      Know if something gets lost in the mail.
     </p>
   </div>
 </div>
@@ -28,7 +28,7 @@
 
       <div>
         <label for="estimated_arrival_box">
-          Suppose to arrive on
+          Supposed to arrive on
         </label>
 
         <input type="date" id="estimated_arrival_box" name="query_estimated_arrival">
@@ -42,7 +42,9 @@
         <textarea type="text" id="details_box" name="query_details">
         </textarea>
       </div>
-      
+
+      <input type="hidden" name="query_user_id" value="<%= current_user.id %>">
+
       <button>
         Log delivery
       </button>

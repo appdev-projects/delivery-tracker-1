@@ -1,8 +1,7 @@
 class PackagesController < ApplicationController
+  before_action :authenticate_user!
   def index
-    matching_packages = Package.all
-
-    @list_of_packages = matching_packages.order({ :created_at => :desc })
+    @list_of_packages = current_user.packages.order(created_at: :desc)
 
     render({ :template => "packages/index" })
   end
@@ -24,7 +23,7 @@ class PackagesController < ApplicationController
     the_package.details = params.fetch("query_details")
     #the_package.tracking = params.fetch("query_tracking")
     the_package.recieved = params.fetch("query_recieved", false)
-   # the_package.owner_id = params.fetch("query_owner_id")
+    the_package.user_id = current_user.id
 
     if the_package.valid?
       the_package.save
@@ -55,7 +54,7 @@ class PackagesController < ApplicationController
 
   def destroy
     the_id = params.fetch("path_id")
-    the_package = Package.where({ :id => the_id }).at(0)
+    the_package = current_user.packages.find_by(id: the_id)
 
     the_package.destroy
 
