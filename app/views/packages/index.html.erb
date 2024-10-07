@@ -39,119 +39,58 @@
           Details
         </label>
 
-        <input type="text" id="details_box" name="query_details">
+        <textarea type="text" id="details_box" name="query_details">
+        </textarea>
       </div>
       <!--<div>-->
         <!--<input type="checkbox" id="recieved_box" name="query_recieved" value="1">-->
 
         <!--<label for="recieved_box">Recieved</label>-->
       <!--</div>-->
-      <div>
-        <label for="owner_id_box">
-          Owner
-        </label>
-
-        <input type="text" id="owner_id_box" name="query_owner_id">
-      </div>
-
       <button>
-        Create package
+        Log delivery
       </button>
     </form>
   </div>
 </div>
 
 <hr>
+
 <div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Description
-        </th>
-
-        <th>
-          Estimated arrival
-        </th>
-
-        <th>
-          Details
-        </th>
-
-        <th>
-          Tracking
-        </th>
-
-        <th>
-          Recieved
-        </th>
-
-        <th>
-          Owner
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_packages.each do |a_package| %>
-      <tr>
-        <td>
-          <%= a_package.id %>
-        </td>
-
-        <td>
-          <%= a_package.description %>
-        </td>
-
-        <td>
-          <%= a_package.estimated_arrival %>
-        </td>
-
-        <td>
-          <%= a_package.details %>
-        </td>
-
-        <td>
-          <%= a_package.tracking %>
-        </td>
-
-        <td>
-          <%= a_package.recieved %>
-        </td>
-
-        <td>
-          <%= a_package.owner_id %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_package.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_package.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/packages/<%= a_package.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
+  <h2>
+    Waiting on
+  </h2>
+  <% @list_of_packages.each do |a_package| %>
+    <% if a_package.recieved == false %>
+      <ul>
+        <form action="/mark_package_received/<%= a_package.id %>" method="post">
+          <li>
+            <p><%= a_package.description %></p>
+            <p>Supposed to arrive on <%= a_package.estimated_arrival %></p>
+            <p><%= a_package.details %></p>
+            <button>Mark as received</button>
+          </li>
+        </form>
+      </ul>
+    <% end %>
+  <% end %>
 </div>
 
-<hr>
+<div>
+  <h2>
+    Received
+  </h2>
+  <ul>
+    <% @list_of_packages.each do |a_package| %>
+      <% if a_package.recieved == true %>
+        <li>
+          <p><%= a_package.description %></p>
+          <p>
+            Updated <%= a_package.updated_at %> 
+            <a href="/delete_package/<%= a_package.id%>">Delete</a>
+          </p>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

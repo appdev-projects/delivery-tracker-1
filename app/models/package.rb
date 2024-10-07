@@ -15,3 +15,4 @@
 #
 class Package < ApplicationRecord
 end
+ 
