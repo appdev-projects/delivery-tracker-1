@@ -84,7 +84,7 @@
         <li>
           <p><%= a_package.description %></p>
           <p>
-            Updated <%= a_package.updated_at %> 
+            Updated <%= time_ago_in_words(a_package.updated_at) %> ago
             <a href="/delete_package/<%= a_package.id%>">Delete</a>
           </p>
         </li>
