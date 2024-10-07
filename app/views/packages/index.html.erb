@@ -1,8 +1,11 @@
 <div>
   <div>
     <h1>
-      List of all packages
+      Delivery Tracker
     </h1>
+    <p>
+      Know if something gets lost in the mail
+    </p>
   </div>
 </div>
 
@@ -11,7 +14,7 @@
 <div>
   <div>
     <h2>
-      Add a new package
+      Expecting a package?
     </h2>
 
     <form action="/insert_package" method="post">
@@ -25,7 +28,7 @@
 
       <div>
         <label for="estimated_arrival_box">
-          Estimated arrival
+          Suppose to arrive on
         </label>
 
         <input type="date" id="estimated_arrival_box" name="query_estimated_arrival">
@@ -38,21 +41,11 @@
 
         <input type="text" id="details_box" name="query_details">
       </div>
+      <!--<div>-->
+        <!--<input type="checkbox" id="recieved_box" name="query_recieved" value="1">-->
 
-      <div>
-        <label for="tracking_box">
-          Tracking
-        </label>
-
-        <input type="text" id="tracking_box" name="query_tracking">
-      </div>
-
-      <div>
-        <input type="checkbox" id="recieved_box" name="query_recieved" value="1">
-
-        <label for="recieved_box">Recieved</label>
-      </div>
-
+        <!--<label for="recieved_box">Recieved</label>-->
+      <!--</div>-->
       <div>
         <label for="owner_id_box">
           Owner
