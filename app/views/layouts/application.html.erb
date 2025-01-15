@@ -5,12 +5,30 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+<link rel="stylesheet" href="/css/my_styles.css">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
+  <hr>
+    <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+       <hr>
+          <% if current_user == nil %>
+      <a href="/users/sign_up">Sign up</a>
+      |
+      <a href="/users/sign_in">Sign in</a>
+      <hr>
+    <% else %>
+      <a href="/">Deliver Tracker</a>
+      |
+      <a href="/users/edit">Edit profile</a>
+      |
+      <a href="/users/sign_out">Sign out</a>
+      <hr>
+    <% end %>
     <%= yield %>
   </body>
 </html>
