@@ -4,6 +4,14 @@ class DeliveriesController < ApplicationController
 
     @list_of_deliveries = matching_deliveries.order({ :created_at => :desc })
 
+    match_wo = Delivery.where({ :arrived => "false"})
+
+    @wo_deliveries = match_wo.order({ :created_at => :desc })
+
+    match_r = Delivery.where({ :arrived => "true" })
+
+    @r_deliveries = match_r.order({ :created_at => :desc })
+
     render({ :template => "deliveries/index" })
   end
 
