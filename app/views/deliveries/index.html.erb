@@ -57,12 +57,12 @@
 </div>
 
 <hr>
-<div.waiting_on>
+<div class="waiting_on">
 
-  <h2>Waiting on</h2>
-  <ul>
+  <h2 class="waiting_on">Waiting on</h2>
+  <ul class="waiting_on">
     <% @wo_deliveries.each do |a_delivery| %>
-      <li>
+      <li class="waiting_on">
         <div><%= a_delivery.description %></div>
         <% if a_delivery.supposed_to_arrive_on < Time.now %>
           <div style="color: red">
