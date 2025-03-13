@@ -73,7 +73,7 @@
 </div>
 
 <hr>
-<div class="waiting_on">
+<div class="waiting_on" style="background-color: lightgoldenrodyellow">
   <h2> Waiting on </h2>
   <ul>
     <% @wo_deliveries.each do |a_delivery| %>
@@ -105,52 +105,22 @@
 
 <hr>
 
-<div class="received">
+<div class="received" style="background-color: lightgreen">
   <h2>Received</h2>
 
   <ul>
     <% @r_deliveries.each do |a_delivery| %>
       <li>
         <div><%= a_delivery.description %></div>
-        <%= time_ago_in_words(a_delivery.updated_at) %> ago
+        <div>
+          <small>
+            <%= time_ago_in_words(a_delivery.updated_at) %> ago
+            <a href="/delete_delivery/<%= a_delivery.user_id %>">Delete</a>
+          </small>
+        </div>
       </li>
     <% end %>
-        <td>
-          <%= a_delivery.arrived %>
-        </td>
-
-        <td>
-          <%= a_delivery.description %>
-        </td>
-
-        <td>
-          <%= a_delivery.details %>
-        </td>
-
-        <td>
-          <%= a_delivery.supposed_to_arrive_on %>
-        </td>
-
-        <td>
-          <%= a_delivery.user_id %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_delivery.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_delivery.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/deliveries/<%= a_delivery.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
+  </ul>
 </div>
 
 <hr>
