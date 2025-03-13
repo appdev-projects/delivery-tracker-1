@@ -64,12 +64,16 @@
     <% @wo_deliveries.each do |a_delivery| %>
       <li>
         <div><%= a_delivery.description %></div>
-        
-        <div style="color: red">
-          Supposed to arrive on
-          <%= a_delivery.supposed_to_arrive_on %>
-        </div>
-
+        <% if a_delivery.supposed_to_arrive_on < Time.now %>
+          <div style="color: red">
+            Supposed to arrive on
+            <%= a_delivery.supposed_to_arrive_on %>
+          </div>
+        <% else %>
+          <div>
+            Supposed to arrive on
+            <%= a_delivery.supposed_to_arrive_on %>
+          </div>
         <div>
           <%= a_delivery.details %>
         </div>
