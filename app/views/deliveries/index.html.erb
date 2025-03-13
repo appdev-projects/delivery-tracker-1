@@ -1,4 +1,4 @@
-<div>
+<div class="waiting_on">
   <nav>
         <a href="/">Delivery Tracker</a>
         |
@@ -59,8 +59,8 @@
 <hr>
 <div class="waiting_on">
 
-  <h2 class="waiting_on">Waiting on</h2>
-  <ul class="waiting_on">
+  <h2> Waiting on </h2>
+  <ul>
     <% @wo_deliveries.each do |a_delivery| %>
       <li class="waiting_on">
         <div><%= a_delivery.description %></div>
