@@ -4,11 +4,11 @@ class DeliveriesController < ApplicationController
 
     @list_of_deliveries = matching_deliveries.order({ :created_at => :desc })
 
-    match_wo = Delivery.where({ :arrived => "false"})
+    match_wo = Delivery.where({ :user_id => current_user.id, :arrived => "false"})
 
     @wo_deliveries = match_wo.order({ :created_at => :desc })
 
-    match_r = Delivery.where({ :arrived => "true" })
+    match_r = Delivery.where({ :user_id => current_user.id, :arrived => "true" })
 
     @r_deliveries = match_r.order({ :created_at => :desc })
 
@@ -27,11 +27,11 @@ class DeliveriesController < ApplicationController
 
   def create
     the_delivery = Delivery.new
-    the_delivery.arrived = params.fetch("query_arrived", false)
+    the_delivery.arrived = false
     the_delivery.description = params.fetch("query_description")
     the_delivery.details = params.fetch("query_details")
     the_delivery.supposed_to_arrive_on = params.fetch("query_supposed_to_arrive_on")
-    the_delivery.user_id = params.fetch("query_user_id")
+    the_delivery.user_id = current_user.id
 
     if the_delivery.valid?
       the_delivery.save
