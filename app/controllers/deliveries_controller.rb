@@ -12,8 +12,6 @@ class DeliveriesController < ApplicationController
 
     @r_deliveries = match_r.order({ :created_at => :desc })
 
-    @user_id = params.fetch("id")
-
     render({ :template => "deliveries/index" })
   end
 
