@@ -1,10 +1,20 @@
 <div>
+  <nav>
+        <a href="/">Delivery Tracker</a>
+        |
+        <a href="/users/edit">Edit profile</a>
+        |
+        <a href="/users/sign_out">Sign out</a>
+    </nav>
+
+<hr>
+
   <div>
     <h1>
       Delivery Tracker
     </h1>
-    <p>Know if something gets lost in the mail.</p>
   </div>
+  <p>Know if something gets lost in the mail.</p>
 </div>
 
 <hr>
@@ -39,7 +49,6 @@
 
         <textarea id="details_box" name="query_details" rows="3"></textarea>
       </div>
-
       <button>
         Log delivery
       </button>
@@ -48,52 +57,60 @@
 </div>
 
 <hr>
+<div class="waiting_on">
 
-<div class="waiting_on" style="background-color:lightyellow;">
-  <h2>Waiting on</h2>
-
+  <h2> Waiting on </h2>
   <ul>
-    <%  @list_of_deliveries.each do |a_delivery|   %>
-    <% if !a_delivery.arrived %>
-      <li>
-      <div><%= a_delivery.description %></div>
+    <% @wo_deliveries.each do |a_delivery| %>
+      <li class="waiting_on">
+        <div><%= a_delivery.description %></div>
+        <% if a_delivery.supposed_to_arrive_on < Time.now %>
+          <div style="color: red">
+            Supposed to arrive on
+            <%= a_delivery.supposed_to_arrive_on %>
+          </div>
+        <% else %>
+          <div>
+            Supposed to arrive on
+            <%= a_delivery.supposed_to_arrive_on %>
+          </div>
+        <% end %>
+        <div>
+          <%= a_delivery.details %>
+        </div>
 
-      <div style="color:red">
-        Supposed to arrive on <%= a_delivery.supposed_to_arrive_on  %>
-      </div>
+        <div>
+          <form action="/modify_delivery/<%= a_delivery.id %>" method="post">
+            <input type="hidden" name="arrived" value="true">
 
-      <div><%= a_delivery.details %></div>
+            <button>Mark as received</button>
+          </form>
+        </div>
 
-      <div>
-        <form action="modify_delivery/<%= a_delivery.id %>" method="post">
-          <button>Mark as received</button>
-        </form>
-      </div>
-    </li>
-    <% end %>
+        <br>
+        </li>
     <% end %>
   </ul>
-
 </div>
 
 <hr>
 
-<div class="received" style="background-color:lightgreen;">
+<div class="received" style="background-color: lightgreen">
   <h2>Received</h2>
+
   <ul>
-  <%  @list_of_deliveries.each do |a_delivery|   %>
-    <% if a_delivery.arrived %>
+    <% @r_deliveries.each do |a_delivery| %>
       <li>
         <div><%= a_delivery.description %></div>
-
         <div>
           <small>
-            Updated <%= a_delivery.updated_minutes_ago %> minutes ago
+            <%= time_ago_in_words(a_delivery.updated_at) %> ago
             <a href="/delete_delivery/<%= a_delivery.id %>">Delete</a>
           </small>
         </div>
       </li>
     <% end %>
-    <% end %>
   </ul>
 </div>
+
+<hr>
