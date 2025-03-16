@@ -4,11 +4,11 @@ class DeliveriesController < ApplicationController
 
     @list_of_deliveries = matching_deliveries.order({ :created_at => :desc })
 
-    match_wo = Delivery.where({ :user_id => current_user.id, :arrived => "false"})
+    match_wo = Delivery.where({ :user_id => current_user.id, :arrived => false})
 
     @wo_deliveries = match_wo.order({ :created_at => :desc })
 
-    match_r = Delivery.where({ :user_id => current_user.id, :arrived => "true" })
+    match_r = Delivery.where({ :user_id => current_user.id, :arrived => true })
 
     @r_deliveries = match_r.order({ :created_at => :desc })
 
