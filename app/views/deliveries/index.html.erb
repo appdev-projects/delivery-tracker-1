@@ -1,0 +1,132 @@
+<div>
+  <div>
+    <h1>
+      List of all deliveries
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new delivery
+    </h2>
+
+    <form action="/insert_delivery" method="post">
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+      </div>
+
+      <div>
+        <label for="expected_arrival_box">
+          Expected arrival
+        </label>
+
+        <input type="date" id="expected_arrival_box" name="query_expected_arrival">
+      </div>
+
+      <div>
+        <label for="detail_box">
+          Detail
+        </label>
+
+        <textarea id="detail_box" name="query_detail" rows="3"></textarea>
+      </div>
+
+      <div>
+        <input type="checkbox" id="recieved_box" name="query_recieved" value="1">
+
+        <label for="recieved_box">Recieved</label>
+      </div>
+
+      <button>
+        Create delivery
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Expected arrival
+        </th>
+
+        <th>
+          Detail
+        </th>
+
+        <th>
+          Recieved
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_deliveries.each do |a_delivery| %>
+      <tr>
+        <td>
+          <%= a_delivery.id %>
+        </td>
+
+        <td>
+          <%= a_delivery.description %>
+        </td>
+
+        <td>
+          <%= a_delivery.expected_arrival %>
+        </td>
+
+        <td>
+          <%= a_delivery.detail %>
+        </td>
+
+        <td>
+          <%= a_delivery.recieved %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_delivery.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_delivery.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/deliveries/<%= a_delivery.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
