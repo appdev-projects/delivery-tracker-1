@@ -1,0 +1,124 @@
+<div>
+  <div>
+    <h1>
+      Delivery Tracker
+    </h1>
+    <p>Know if something gets lost in the mail.</p>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Expecting a package?
+    </h2>
+
+    
+
+    <form action="/insert_delivery" method="post">
+      <div>
+        <input type="hidden" id="user_id_box" name="query_user_id" value="<%= current_user.id %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+      </div>
+
+      <div>
+        <label for="supposed_to_arrive_on_box">
+          Supposed to arrive on
+        </label>
+
+        <input type="date" id="supposed_to_arrive_on_box" name="query_supposed_to_arrive_on">
+      </div>
+
+      <div>
+        <label for="details_box">
+          Details
+        </label>
+
+        <textarea id="details_box" name="query_details" rows="3"></textarea>
+      </div>
+
+      <div>
+        <input type="hidden" id="arrived_box" name="query_arrived" value="0">
+      </div>
+
+      <button>
+        Log delivery
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+
+<div class="waiting_on">
+  <h2>Waiting on</h2>
+
+
+<ul>
+      <% @list_of_deliveries.each do |package| %>
+        <% if package.arrived == false %>
+          <li>
+            <form action="/modify_delivery/<%= package.id %>" method="post">
+          
+              
+              <div>
+                <%= package.description %>
+              </div>
+
+              <div>
+                <p>Supposed to arrive on <%= package.supposed_to_arrive_on %></p>
+              </div>
+              
+              <div>
+                <%= package.details %>
+              </div>
+              
+              <div>
+                <button type="submit">
+                  Mark as received
+                </button>
+              </div>
+            </form>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+
+</div>
+
+<hr>
+
+<div class="received">
+  <h2>Received</h2>
+
+
+<ul>
+  <% arrived = Delivery.where({ :arrived => true, :user_id => current_user }) %>
+  <% arrived.each do |package| %>
+  <div>
+    <li>
+      <div>
+        <%= package.description %>
+      </div>
+
+      <p>
+          Updated <%= time_ago_in_words(package.updated_at) %> ago 
+      </p>
+          <a href="/delete_delivery/<%= package.id %>">Delete</a>
+    </li>
+  </div>
+  <% end %>
+
+
+</ul>
+
+</div>
