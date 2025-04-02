@@ -40,9 +40,6 @@
       </div>
 
       <div>
-        <input type="checkbox" id="recieved_box" name="query_recieved" value="1">
-
-        <label for="recieved_box">Recieved</label>
       </div>
 
       <button>
@@ -55,78 +52,68 @@
 <hr>
 <div>
   <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
+  
+    <h1>Waiting On</h1>
+      <ul border="1">
+    <% @expected_deliveries.each do |a_delivery| %>
 
-        <th>
-          Description
-        </th>
+        <li>
+                <p>
+                  <%= a_delivery.description %>
+                </p>
 
-        <th>
-          Expected arrival
-        </th>
+                <p>
+                  <%= a_delivery.expected_arrival %>
+                </p>
 
-        <th>
-          Detail
-        </th>
+                <p>
+                  <%= a_delivery.detail %>
+                </p>
 
-        <th>
-          Recieved
-        </th>
+                <form action="/modify_delivery/<%= a_delivery.id %>" method="post">
 
-        <th>
-          Created at
-        </th>
+                  <input type="hidden"id="recieved_box" name="query_recieved" value="true"">
 
-        <th>
-          Updated at
-        </th>
+                  <button for="recieved_box">Recieved</button>
 
-        <th>
-        </th>
-      </tr>
+                </form>
+              </li>
+            </ul>
 
-      <% @list_of_deliveries.each do |a_delivery| %>
-      <tr>
-        <td>
-          <%= a_delivery.id %>
-        </td>
-
-        <td>
-          <%= a_delivery.description %>
-        </td>
-
-        <td>
-          <%= a_delivery.expected_arrival %>
-        </td>
-
-        <td>
-          <%= a_delivery.detail %>
-        </td>
-
-        <td>
-          <%= a_delivery.recieved %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_delivery.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_delivery.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/deliveries/<%= a_delivery.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
+          <% end%>
 </div>
+  </div>
+            
+            <h1>We Got it </h1>
+            
+          <%  @recieved_deliveries.each do |recieved_delivery| %>
+            <ul>
+              <li>
+                <p>
+                  <%= recieved_delivery.description %>
+                </p>
 
-<hr>
+                <p>
+                  <%= recieved_delivery.expected_arrival %>
+                </p>
+
+                <p>
+                  <%= recieved_delivery.detail %>
+                </p>
+
+                <p>
+                  <%= recieved_delivery.recieved %>
+                </p>
+
+                <p>
+                  <a href="/delete_delivery/<%= recieved_delivery.id %>">
+                    delete  </a>
+                </p>
+              </li>
+            </ul>
+
+      </ul>
+          
+
+        <% end %>
+  

@@ -3,6 +3,15 @@ class DeliveriesController < ApplicationController
     matching_deliveries = Delivery.all
 
     @list_of_deliveries = matching_deliveries.order({ :created_at => :desc })
+    
+    matching_recieved_deliveries = Delivery.where({:recieved => true})
+
+    @recieved_deliveries = matching_recieved_deliveries.order({ :created_at => :desc })
+    
+    matching_expected_deliveries = Delivery.where({:recieved => false})
+
+    @expected_deliveries = matching_expected_deliveries.order({ :created_at => :desc })
+ 
 
     render({ :template => "deliveries/index" })
   end
@@ -36,16 +45,16 @@ class DeliveriesController < ApplicationController
     the_id = params.fetch("path_id")
     the_delivery = Delivery.where({ :id => the_id }).at(0)
 
-    the_delivery.description = params.fetch("query_description")
-    the_delivery.expected_arrival = params.fetch("query_expected_arrival")
-    the_delivery.detail = params.fetch("query_detail")
-    the_delivery.recieved = params.fetch("query_recieved", false)
+    # the_delivery.description = params.fetch("query_description")
+    # the_delivery.expected_arrival = params.fetch("query_expected_arrival")
+    # the_delivery.detail = params.fetch("query_detail")
+    the_delivery.recieved = params.fetch("query_recieved", true)
 
     if the_delivery.valid?
       the_delivery.save
-      redirect_to("/deliveries/#{the_delivery.id}", { :notice => "Delivery updated successfully."} )
+      redirect_to("/deliveries", { :notice => "Delivery updated successfully."} )
     else
-      redirect_to("/deliveries/#{the_delivery.id}", { :alert => the_delivery.errors.full_messages.to_sentence })
+      redirect_to("/deliveries", { :alert => the_delivery.errors.full_messages.to_sentence })
     end
   end
 
