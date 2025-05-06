@@ -15,9 +15,11 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_05_231838) do
   enable_extension "plpgsql"
 
   create_table "deliveries", force: :cascade do |t|
+    t.integer "user_id"
     t.string "description"
     t.date "supposed_to_arrive_on"
     t.text "details"
+    t.boolean "arrived"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
