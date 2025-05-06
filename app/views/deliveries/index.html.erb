@@ -71,6 +71,10 @@
             </div>            
           <% end %>
 
+            <div>
+            <%= delivery.details %>
+          </div>
+
           <div>
             <form action="/modify_delivery/<%=delivery.id%>" method="post">
               <input type="hidden" name="query_arrived" value="true">

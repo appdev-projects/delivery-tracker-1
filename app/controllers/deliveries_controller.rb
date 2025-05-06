@@ -36,7 +36,7 @@ class DeliveriesController < ApplicationController
 
     if delivery.valid?
       delivery.save
-      redirect_to("/deliveries", { :notice => "Delivery created successfully." })
+      redirect_to("/deliveries", { :notice => "Added to list." })
     else
       redirect_to("/deliveries", { :alert => delivery.errors.full_messages.to_sentence })
     end
@@ -66,7 +66,7 @@ class DeliveriesController < ApplicationController
 
   if the_delivery
     the_delivery.destroy
-    redirect_to deliveries_path, notice: "Delivery deleted successfully."
+    redirect_to deliveries_path, notice: "Deleted."
   else
     redirect_to deliveries_path, alert: "Delivery not found."
   end
