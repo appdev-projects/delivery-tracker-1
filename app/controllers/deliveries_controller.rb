@@ -1,5 +1,6 @@
 class DeliveriesController < ApplicationController
   def index
+    # before_action :authenticate_user!
       # if there is no user redirect to the login page
       if current_user == nil
         redirect_to("/users/sign_in")
