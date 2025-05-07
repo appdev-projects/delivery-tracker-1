@@ -4,7 +4,7 @@ class CreateDeliveries < ActiveRecord::Migration[7.1]
       t.string :description
       t.text :details
       t.date :supposed_to_arrive_on
-      t.boolean :received
+      t.boolean :arrived
 
       t.timestamps
     end
