@@ -1,19 +1,17 @@
 class DeliveriesController < ApplicationController
   # before_action :authenticate_user!
   def index
-    
-      # if there is no user redirect to the login page
-       if current_user == nil
-         redirect_to("/users/sign_in")
-       return
-       end
-    matching_deliveries = Delivery.all
 
-     @list_of_deliveries = matching_deliveries.order({ :created_at => :desc })
-  
+    # if there is no user redirect to the login page
+    if current_user == nil
+      redirect_to("/users/sign_in")
+    else
+      matching_deliveries = Delivery.all
 
-    render({ :template => "deliveries/index" })
-   
+      @list_of_deliveries = matching_deliveries.order({ :created_at => :desc })
+
+      render({ :template => "deliveries/index" })
+    end
   end
 
   def show
@@ -49,11 +47,11 @@ class DeliveriesController < ApplicationController
     # the_delivery.description = params.fetch("query_description")
     # the_delivery.supposed_to_arrive_on = params.fetch("query_supposed_to_arrive_on")
     # the_delivery.details = params.fetch("query_details")
-     the_delivery.arrived = params.fetch("query_arrived")
+    the_delivery.arrived = params.fetch("query_arrived")
 
     if the_delivery.valid?
       the_delivery.save
-      redirect_to("/", { :notice => "Delivery updated successfully."} )
+      redirect_to("/", { :notice => "Delivery updated successfully." })
     else
       redirect_to("/", { :alert => the_delivery.errors.full_messages.to_sentence })
     end
@@ -63,13 +61,12 @@ class DeliveriesController < ApplicationController
     the_id = params.fetch("path_id")
     the_delivery = Delivery.where({ :id => the_id }).at(0)
 
-
-  if the_delivery
-    the_delivery.destroy
-    redirect_to deliveries_path, notice: "Deleted."
-  else
-    redirect_to deliveries_path, alert: "Delivery not found."
-  end
+    if the_delivery
+      the_delivery.destroy
+      redirect_to deliveries_path, notice: "Deleted."
+    else
+      redirect_to deliveries_path, alert: "Delivery not found."
+    end
 
     # the_delivery.destroy
 
