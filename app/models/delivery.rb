@@ -3,6 +3,7 @@
 # Table name: deliveries
 #
 #  id                    :bigint           not null, primary key
+#  arrived               :boolean
 #  description           :string
 #  details               :text
 #  received              :boolean
