@@ -12,6 +12,22 @@
 
   <body>
     <p id="notice"><%= flash[:notice] || "" %></p>
+
+    <% if current_user != nil %>
+    <nav>
+        <a href="/">Delivery Tracker</a>
+        |
+        <a href="/users/edit">Edit profile</a>
+        |
+        <a href="/users/sign_out">Sign out</a>
+    </nav>
+    <% else %>
+    <nav>
+      <a href="/users/sign_up">Sign up</a>
+        |
+      <a href="/users/sign_in">Sign in</a>
+    </nav>
+    <% end %>
     <%= yield %>
   </body>
 </html>
