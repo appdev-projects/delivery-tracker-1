@@ -3,6 +3,7 @@
     <h1>
       Delivery Tracker
     </h1>
+    <p>Know if something gets lost in the mail.</p>
   </div>
 </div>
 
@@ -13,15 +14,15 @@
     <h2>
       Expecting a package?
     </h2>
+    
 
     <form action="/insert_delivery" method="post">
-      <!--<div>
-        <label for="user_id_box">
-          User
-        </label>
+      
+        
+          <% user_id = @list_of_deliveries.at(0)%>
 
-        <input type="text" id="user_id_box" name="query_user_id">
-      </div>-->
+        <input type="hidden" id="user_id_box" name="query_user_id" value="<%= user_id.user_id%>">
+    
 
       <div>
         <label for="description_box">
@@ -57,78 +58,56 @@
 <hr>
 <div>
   <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
+    
+      
 
-        <th>
-          User
-        </th>
 
-        <th>
-          Description
-        </th>
 
-        <th>
-          Supposed to arrive on
-        </th>
+<div class="waiting_on">
+  <h2>Waiting on</h2>
+<% @list_of_deliveries.each do |delivery| %>
+  <ul>
+      <li>
+        <div><%=delivery.description%></div>
 
-        <th>
-          Details
-        </th>
+        <div style="color: red">
+         Supposed to arrive on <%=delivery.supposed_to_arrive_on %>
+          
+        </div>
 
-        <th>
-          Created at
-        </th>
+        <div>
+          <%=delivery.details%>
+        </div>
 
-        <th>
-          Updated at
-        </th>
+        <div>
+          <form action="/modify_delivery/730195" method="post">
+            <input type="hidden" name="arrived" value="true">
 
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_deliveries.each do |a_delivery| %>
-      <tr>
-        <td>
-          <%= a_delivery.id %>
-        </td>
-
-        <td>
-          <%= a_delivery.user_id %>
-        </td>
-
-        <td>
-          <%= a_delivery.description %>
-        </td>
-
-        <td>
-          <%= a_delivery.supposed_to_arrive_on %>
-        </td>
-
-        <td>
-          <%= a_delivery.details %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_delivery.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_delivery.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/deliveries/<%= a_delivery.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
+            <button>Mark as received</button>
+          </form>
+        </div>
+        </ul>
+        <br>
+     
       <% end %>
-    </table>
   </div>
-</div>
+  <hr>
 
-<hr>
+  <div class="received">
+  <h2>Received</h2>
+
+  <ul>
+      <li>
+        <div>Sleek Wool Lamp</div>
+
+        <div>
+          <small>
+            Updated 13 minutes ago
+
+            <a href="/delete_delivery/730195">Delete</a>
+          </small>
+        </div>
+      </li>
+  </ul>
+</div>
+</div>
