@@ -1,5 +1,7 @@
 <div>
  <div>
+ <%= notice %>
+ <%= alert %>
  <h1>
  Delivery Tracker
  </h1>
@@ -23,9 +25,9 @@
  <form action="/insert_delivery" method="post">
       
         
-          <% user_id = @list_of_deliveries.at(0)%>
+  
 
- <input type="hidden" id="user_id_box" name="query_user_id" value="<%= user_id.user_id%>">
+ <input type="hidden" id="user_id_box" name="query_user_id" value="<%= %>">
     
 
  <div>
@@ -84,7 +86,7 @@
  </div>
 
  <div>
- <form action="/modify_delivery/730195" method="post">
+ <form action="/modify_delivery/<%=delivery.id%>" method="post">
  <input type="hidden" name="arrived" value="true">
 
  <button>Mark as received</button>
@@ -99,7 +101,7 @@
 
  <div class="received">
  <h2>Received</h2>
-
+<%=@the_delivery.inspect%>
  <ul>
  <li>
  <div>Sleek Wool Lamp</div>
