@@ -24,9 +24,9 @@ task({ :sample_data => :environment}) do
       delivery.supposed_to_arrive_on = Faker::Date.between(from: 1.month.ago, to: 2.weeks.from_now)
 
       if delivery.supposed_to_arrive_on < Time.now
-        delivery.arrived = [true, false].sample
+        delivery.supposed_to_arrive_on = [true, false].sample
       else
-        delivery.arrived = false
+        delivery.supposed_to_arrive_on = false
       end
 
       delivery.save
