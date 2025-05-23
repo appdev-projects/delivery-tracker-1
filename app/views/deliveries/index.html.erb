@@ -4,6 +4,7 @@
       Delivery Tracker
     </h1>
     <p>Know if something gets lost in the mail.</p>
+
   </div>
 </div>
 
@@ -14,7 +15,8 @@
     <h2>
       Expecting a package?
     </h2>
-    
+              <% user_id = @list_of_deliveries.at(0)%>
+
 
     <form action="/insert_delivery" method="post">
       
