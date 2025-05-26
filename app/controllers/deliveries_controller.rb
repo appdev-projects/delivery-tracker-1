@@ -12,7 +12,7 @@ class DeliveriesController < ApplicationController
 
     matching_deliveries = Delivery.where({ :id => the_id })
 
-    @the_delivery = matching_deliveries.at(0)
+    the_delivery = matching_deliveries.at(0)
 
     render({ :template => "deliveries/show" })
   end
@@ -34,8 +34,8 @@ class DeliveriesController < ApplicationController
 
   def update
     the_id = params.fetch("path_id")
+    
     @the_delivery = Delivery.where({ :id => the_id }).at(0)
-
 
     # @the_delivery.user_id = current_user.id
     # @the_delivery.description = params.fetch("query_description")
@@ -43,9 +43,9 @@ class DeliveriesController < ApplicationController
     # @the_delivery.details = params.fetch("query_details")
 
     if @the_delivery.valid?
+   
       @the_delivery.save
-      
-      redirect_to("/deliveries", { :notice => "Marked as received."} )
+     redirect_to("/deliveries", notice: "Marked delivery #{@the_delivery.id} as received.")
     else
       redirect_to("/deliveries", { :alert => @the_delivery.errors.full_messages.to_sentence })
     end
