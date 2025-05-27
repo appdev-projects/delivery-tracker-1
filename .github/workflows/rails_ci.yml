@@ -1,36 +1,12 @@
-# This workflow will install a prebuilt Ruby version, install dependencies, and
-# run tests and linters.
-name: "Ruby on Rails CI"
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:11-alpine
-        ports:
-          - "5432:5432"
-        env:
-          POSTGRES_DB: rails_test
-          POSTGRES_USER: rails
-          POSTGRES_PASSWORD: password
-   env:
-      RAILS_ENV: test
-      DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
-
- steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
-        with:
-          bundler-cache: true
-      - name: Set up database schema
-        run: bin/rails db:schema:load
-      # This runs the tests in the spec/ folder
-      - name: Run rspec tests
-        run: bundle exec rspec
+            - name: Standard Ruby
+  # You may pin to the exact commit or the version.
+  # uses: packagespace/standard-ruby-action@a9050d2442db97288183940ce7e74e3b05f8e4ae
+  uses: packagespace/standard-ruby-action@v1.0.3
+  with:
+    # The Ruby version specifier to pass to ruby/setup-ruby
+    ruby-version: # optional, default is ruby
+    # Whether autofixes should be committed back to the branch
+    autofix: # optional, default is true
+    # The working directory from which to run this action's commands. Default '.'
+    workdir: # optional, default is .
+          
