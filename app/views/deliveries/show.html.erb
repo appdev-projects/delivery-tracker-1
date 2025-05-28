@@ -17,16 +17,15 @@
         </a>
       </div>
     </div>
-    
-   <dl>
-       <dt>
+
+    <dl>
+      <dt>
         User
       </dt>
       <dd>
         <%= @the_delivery.user_id %>
       </dd>
 
- 
       <dt>
         Description
       </dt>
@@ -55,8 +54,6 @@
         <%= @the_delivery.arrived %>
       </dd>
 
-  
-
       <dt>
         Created at
       </dt>
@@ -84,6 +81,14 @@
     </h2>
 
     <form action="/modify_delivery/<%= @the_delivery.id %>"  method="post" >
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_delivery.user_id %>">
+      </div>
+
       <div>
         <label for="description_box">
           Description
@@ -114,14 +119,6 @@
         <label for="arrived_box">
             Arrived
         </label>
-      </div>
-
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_delivery.user_id %>">
       </div>
 
       <button>
