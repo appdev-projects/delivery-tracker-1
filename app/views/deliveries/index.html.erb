@@ -62,7 +62,7 @@
             <%= delivery.description %>
           </div>
 
-          <% if delivery.supposed_to_arrive_on < Time.now %>
+<% if delivery.supposed_to_arrive_on.present? && delivery.supposed_to_arrive_on < Time.now %>
             <div class="late">
               Supposed to arrive on <%= delivery.supposed_to_arrive_on %>
             </div>
