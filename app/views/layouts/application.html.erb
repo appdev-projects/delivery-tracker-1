@@ -8,6 +8,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <link rel="stylesheet" href="/css/style.css">
   </head>
 
   <body>
@@ -20,9 +21,10 @@
     </nav>
     <hr>
 
-        <% flash.each do |key, message| %>
+    <% flash.each do |key, message| %>
       <div class="alert alert-<%= key %>"><%= message %></div> 
     <% end %>
+
     <%= yield %>
   </body>
 </html>
