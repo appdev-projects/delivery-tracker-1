@@ -71,7 +71,7 @@
 
 <div class="waiting_on">
  <h2>Waiting on</h2>
-<% @list_of_deliveries.each do |delivery| %>
+<% @waiting_on.each do |delivery| %>
  <ul>
  <li>
  <div><%=delivery.description%></div>
@@ -101,19 +101,20 @@
 
  <div class="received">
  <h2>Received</h2>
-<%=@the_delivery.inspect%>
+<%=@received.each do |delivery|%>
  <ul>
  <li>
- <div>Sleek Wool Lamp</div>
+ <div><%=delivery.description%></div>
 
  <div>
  <small>
- Updated 13 minutes ago
+ Updated <%=delivery.updated_at%>
 
- <a href="/delete_delivery/730195">Delete</a>
+ <a href="/delete_delivery/<%=delivery.id%>">Delete</a>
  </small>
  </div>
  </li>
  </ul>
+ <%end%>
 </div>
 </div>
