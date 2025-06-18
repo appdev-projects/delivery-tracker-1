@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Delivery #<%= @the_delivery.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/deliveries">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_delivery/<%= @the_delivery.id %>">
+          Delete delivery
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_delivery.description %>
+      </dd>
+
+      <dt>
+        Expected arrival
+      </dt>
+      <dd>
+        <%= @the_delivery.expected_arrival %>
+      </dd>
+
+      <dt>
+        Detail
+      </dt>
+      <dd>
+        <%= @the_delivery.detail %>
+      </dd>
+
+      <dt>
+        Recieved
+      </dt>
+      <dd>
+        <%= @the_delivery.recieved %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_delivery.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_delivery.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit delivery
+    </h2>
+
+    <form action="/modify_delivery/<%= @the_delivery.id %>"  method="post" >
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description" value="<%= @the_delivery.description %>">
+      </div>
+
+      <div>
+        <label for="expected_arrival_box">
+          Expected arrival
+        </label>
+
+        <input type="date" id="expected_arrival_box" name="query_expected_arrival" value="<%= @the_delivery.expected_arrival %>">
+      </div>
+
+      <div>
+        <label for="detail_box">
+          Detail
+        </label>
+
+        <textarea id="detail_box" name="query_detail"><%= @the_delivery.detail %></textarea>
+      </div>
+
+      <div>
+        <input type="checkbox" id="recieved_box" name="query_recieved" value="1" <%= "checked" if @the_delivery.recieved %>>
+
+        <label for="recieved_box">
+            Recieved
+        </label>
+      </div>
+
+      <button>
+        Update delivery
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
