@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   get("/delete_delivery/:path_id", { :controller => "deliveries", :action => "destroy" })
 
   #------------------------------
-
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   devise_for :users
