@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Delivery #<%= @the_delivery.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/deliveries">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_delivery/<%= @the_delivery.id %>">
+          Delete delivery
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @the_delivery.title %>
+      </dd>
+
+      <dt>
+        Body
+      </dt>
+      <dd>
+        <%= @the_delivery.body %>
+      </dd>
+
+      <dt>
+        Delivery on
+      </dt>
+      <dd>
+        <%= @the_delivery.delivery_on %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_delivery.user_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_delivery.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_delivery.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit delivery
+    </h2>
+
+    <form action="/modify_delivery/<%= @the_delivery.id %>"  method="post" >
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title" value="<%= @the_delivery.title %>">
+      </div>
+
+      <div>
+        <label for="body_box">
+          Body
+        </label>
+
+        <textarea id="body_box" name="query_body"><%= @the_delivery.body %></textarea>
+      </div>
+
+      <div>
+        <label for="delivery_on_box">
+          Delivery on
+        </label>
+
+        <input type="date" id="delivery_on_box" name="query_delivery_on" value="<%= @the_delivery.delivery_on %>">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_delivery.user_id %>">
+      </div>
+
+      <button>
+        Update delivery
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
