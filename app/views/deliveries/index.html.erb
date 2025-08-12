@@ -1,0 +1,119 @@
+<div>
+  <div>
+    <h1>
+      List of all deliveries
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new delivery
+    </h2>
+
+    <form action="/insert_delivery" method="post">
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+      </div>
+
+      <div>
+        <label for="expected_arrival_box">
+          Expected arrival
+        </label>
+
+        <input type="date" id="expected_arrival_box" name="query_expected_arrival">
+      </div>
+
+      <div>
+        <label for="detail_box">
+          Detail
+        </label>
+
+        <textarea id="detail_box" name="query_detail" rows="3"></textarea>
+      </div>
+
+      <div>
+      </div>
+
+      <button>
+        Create delivery
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+  
+    <h1>Waiting On</h1>
+      <ul border="1">
+    <% @expected_deliveries.each do |a_delivery| %>
+
+        <li>
+                <p>
+                  <%= a_delivery.description %>
+                </p>
+
+                <p>
+                  <%= a_delivery.expected_arrival %>
+                </p>
+
+                <p>
+                  <%= a_delivery.detail %>
+                </p>
+
+                <form action="/modify_delivery/<%= a_delivery.id %>" method="post">
+
+                  <input type="hidden"id="recieved_box" name="query_recieved" value="true"">
+
+                  <button for="recieved_box">Recieved</button>
+
+                </form>
+              </li>
+            </ul>
+
+          <% end%>
+</div>
+  </div>
+            
+            <h1>We Got it </h1>
+            
+          <%  @recieved_deliveries.each do |recieved_delivery| %>
+            <ul>
+              <li>
+                <p>
+                  <%= recieved_delivery.description %>
+                </p>
+
+                <p>
+                  <%= recieved_delivery.expected_arrival %>
+                </p>
+
+                <p>
+                  <%= recieved_delivery.detail %>
+                </p>
+
+                <p>
+                  <%= recieved_delivery.recieved %>
+                </p>
+
+                <p>
+                  <a href="/delete_delivery/<%= recieved_delivery.id %>">
+                    delete  </a>
+                </p>
+              </li>
+            </ul>
+
+      </ul>
+          
+
+        <% end %>
+  
